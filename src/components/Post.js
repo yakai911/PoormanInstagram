@@ -51,7 +51,7 @@ function Post({ postId, username, caption, imageUrl, user }) {
       </h4>
       <div className="post__comments">
         {comments.map((comment) => (
-          <p>
+          <p className="post__text">
             <strong>{comment.username}</strong> {comment.text}
           </p>
         ))}
@@ -70,7 +70,7 @@ function Post({ postId, username, caption, imageUrl, user }) {
             disabled={!comment}
             type="submit"
             onClick={postComment}
-            style={comment ? { color: "#1A91DA" } : { color: "#CDEAFD" }}
+            style={comment ? { color: "#4F95F6" } : { color: "#CDEAFD" }}
           >
             发布
           </button>

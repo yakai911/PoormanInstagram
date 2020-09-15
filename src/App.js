@@ -175,7 +175,7 @@ function App() {
       {user?.displayName ? (
         <ImageUpload username={user.displayName} />
       ) : (
-        <h5>登录后发布图片动态...</h5>
+        <h3 className="tiptext">登录发布动态...</h3>
       )}
     </div>
   );

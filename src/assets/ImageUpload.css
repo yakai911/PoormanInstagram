@@ -4,29 +4,47 @@
   width: 60%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 50px;
   background-color: white;
 }
 
-.imageupload__button {
-  border: 1px solid lightgray !important;
+.imageupload__progress {
+  width: 100%;
 }
 
 .input__text {
+  margin: 10px auto;
   height: 80px;
   border-radius: 5px;
+  width: 300px;
 }
 
 ::placeholder {
   text-align: left;
   text-justify: none;
+  padding: 5px;
 }
 
 .input__file[type="file"] {
-  margin: 20px auto;
+  margin: 10px 20px;
 }
 
-.imageupload__progress {
-  width: 100%;
+.imageupload__button {
+  border: 1px solid lightgray !important;
+  margin: 50px auto 30px;
+  font-weight: bolder;
+  color: #4f95f6 !important;
+}
+i {
+  color: #4f95f6;
+}
+
+@media screen and (max-width: 900px) {
+  .input__text {
+    margin: 10px auto;
+    height: 80px;
+    border-radius: 5px;
+    width: 220px;
+  }
 }

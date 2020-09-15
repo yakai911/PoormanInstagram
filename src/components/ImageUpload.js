@@ -67,7 +67,7 @@ function ImageUpload({ username }) {
 
       <textarea
         type="text"
-        placeholder="发布图片动态并为它添加评论..."
+        placeholder="为图片添加说明..."
         onChange={(e) => setCaption(e.target.value)}
         value={caption}
         className="input__text"
@@ -75,7 +75,8 @@ function ImageUpload({ username }) {
 
       <input type="file" onChange={handleChange} className="input__file" />
       <Button className="imageupload__button" onClick={handleUpload}>
-        发布动态
+        <strong>发布动态</strong> &nbsp;&nbsp;
+        <i class="far fa-caret-square-up"></i>
       </Button>
     </div>
   );
