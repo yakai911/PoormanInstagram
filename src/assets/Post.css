@@ -32,6 +32,10 @@
   margin-top: 10px;
 }
 
+.post__comments {
+  padding: 20px;
+}
+
 .post__input {
   flex: 0.9;
   border: none;

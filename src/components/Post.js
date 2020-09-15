@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./Post.css";
-import { db, storage } from "./firebase";
+import "../assets/Post.css";
+import { db } from "../firebase";
 import { Avatar } from "@material-ui/core/";
+import firebase from "firebase";
 
-function Post({ postId, username, caption, imageUrl }) {
+function Post({ postId, username, caption, imageUrl, user }) {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
 
@@ -14,6 +15,7 @@ function Post({ postId, username, caption, imageUrl }) {
         .collection("posts")
         .doc(postId)
         .collection("comments")
+        .orderBy("timestamp", "desc")
         .onSnapshot((snapshot) => {
           setComments(snapshot.docs.map((doc) => doc.data()));
         });
@@ -24,7 +26,15 @@ function Post({ postId, username, caption, imageUrl }) {
     };
   }, [postId]);
 
-  const postComment = (e) => {};
+  const postComment = (e) => {
+    e.preventDefault();
+    db.collection("posts").doc(postId).collection("comments").add({
+      text: comment,
+      username: user.displayName,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+    setComment("");
+  };
 
   return (
     <div className="post">
@@ -42,28 +52,29 @@ function Post({ postId, username, caption, imageUrl }) {
       <div className="post__comments">
         {comments.map((comment) => (
           <p>
-            <storage>{comment.username}</storage> {comment.text}
+            <strong>{comment.username}</strong> {comment.text}
           </p>
         ))}
       </div>
-
-      <form className="post__commentBox">
-        <input
-          className="post__input"
-          type="text"
-          placeholder="添加评论..."
-          value={comment}
-          onChange={(e) => setComments(e.target.value)}
-        />
-        <button
-          className="post__button"
-          disabled={!comment}
-          type="submit"
-          onClick={postComment}
-        >
-          发布
-        </button>
-      </form>
+      {user && (
+        <form className="post__commentBox">
+          <input
+            className="post__input"
+            type="text"
+            placeholder="添加评论..."
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
+          <button
+            className="post__button"
+            disabled={!comment}
+            type="submit"
+            onClick={postComment}
+          >
+            发布
+          </button>
+        </form>
+      )}
     </div>
   );
 }

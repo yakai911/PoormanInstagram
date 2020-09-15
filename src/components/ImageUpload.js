@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Button } from "@material-ui/core/";
-import { db, storage } from "./firebase";
+import { db, storage } from "../firebase";
 import firebase from "firebase";
-import "./ImageUpload.css";
+import "../assets/ImageUpload.css";
 
 function ImageUpload({ username }) {
   const [image, setImage] = useState(null);
   const [progress, setProgress] = useState(0);
   const [caption, setCaption] = useState("");
+  const [visibility, setVisibility] = useState(false);
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
@@ -16,6 +17,7 @@ function ImageUpload({ username }) {
   };
 
   const handleUpload = () => {
+    setVisibility(true);
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
     uploadTask.on(
       "state_changed",
@@ -47,6 +49,7 @@ function ImageUpload({ username }) {
             setProgress(0);
             setImage(null);
             setCaption("");
+            setVisibility(false);
           });
       }
     );
@@ -54,16 +57,28 @@ function ImageUpload({ username }) {
 
   return (
     <div className="imageupload">
-      <progress value={progress} max="100" className="imageupload__progress" />
-      <input
+      {visibility && (
+        <progress
+          value={progress}
+          max="100"
+          className="imageupload__progress"
+        />
+      )}
+
+      <textarea
         type="text"
         placeholder="添加评论..."
         onChange={(e) => setCaption(e.target.value)}
         value={caption}
+        className="input__text"
       />
-      <input type="file" onChange={handleChange} />
+      <label for="file-upload" class="custom-file-upload">
+        上传图片
+        <input type="file" onChange={handleChange} className="input__file" />
+      </label>
+
       <Button className="imageupload__button" onClick={handleUpload}>
-        上传
+        发布动态
       </Button>
     </div>
   );

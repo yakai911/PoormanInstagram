@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Post from "./Post";
-import "./App.css";
+import Posts from "./components/Posts";
+import "./assets/App.css";
 import { db, auth } from "./firebase";
 import { makeStyles } from "@material-ui/core/styles";
 import { Modal, Button, Input } from "@material-ui/core/";
-import ImageUpload from "./ImageUpload";
-import InstagramEmbed from "react-instagram-embed";
+import ImageUpload from "./components/ImageUpload";
 
 function getModalStyle() {
   const top = 50;
@@ -171,40 +170,12 @@ function App() {
         )}
       </div>
 
-      <div className="app__posts">
-        <div className="app__postsLeft">
-          {posts.map(({ id, post }) => {
-            return (
-              <Post
-                username={post.username}
-                caption={post.caption}
-                imageUrl={post.imageUrl}
-                key={id}
-                postId={id}
-              />
-            );
-          })}
-        </div>
-        <div className="app__postsRight">
-          <InstagramEmbed
-            url="https://instagr.am/p/Zw9o4"
-            maxWidth={320}
-            hideCaption={false}
-            containerTagName="div"
-            protocol=""
-            injectScript
-            onLoading={() => {}}
-            onSuccess={() => {}}
-            onAfterRender={() => {}}
-            onFailure={() => {}}
-          />
-        </div>
-      </div>
+      <Posts posts={posts} user={user} />
 
       {user?.displayName ? (
         <ImageUpload username={user.displayName} />
       ) : (
-        <h3>请先登录后上传图片...</h3>
+        <h5>登录后发布图片动态...</h5>
       )}
     </div>
   );
