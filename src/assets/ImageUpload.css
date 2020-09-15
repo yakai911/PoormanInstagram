@@ -14,7 +14,7 @@
 }
 
 .input__text {
-  height: 60px;
+  height: 80px;
   border-radius: 5px;
 }
 
@@ -22,21 +22,9 @@
   text-align: left;
   text-justify: none;
 }
-.custom-file-upload {
-  margin: 10px;
-  width: 70px;
-  font-size: 12px;
-  text-align: center;
-  background-color: #0095f6;
-  color: white;
-  display: inline-block;
-  padding: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-}
+
 .input__file[type="file"] {
-  margin: 10px auto;
-  display: none;
+  margin: 20px auto;
 }
 
 .imageupload__progress {

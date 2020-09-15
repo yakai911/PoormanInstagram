@@ -33,7 +33,7 @@
 }
 
 .post__comments {
-  padding: 20px;
+  padding: 0px 20px;
 }
 
 .post__input {
@@ -45,7 +45,6 @@
 .post__button {
   flex: 0.1;
   border: none;
-  color: #b2dffc;
   background-color: transparent;
   border-top: 1px solid lightgray;
   padding: 0 10px;

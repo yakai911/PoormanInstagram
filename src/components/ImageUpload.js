@@ -67,16 +67,13 @@ function ImageUpload({ username }) {
 
       <textarea
         type="text"
-        placeholder="添加评论..."
+        placeholder="发布图片动态并为它添加评论..."
         onChange={(e) => setCaption(e.target.value)}
         value={caption}
         className="input__text"
       />
-      <label for="file-upload" class="custom-file-upload">
-        上传图片
-        <input type="file" onChange={handleChange} className="input__file" />
-      </label>
 
+      <input type="file" onChange={handleChange} className="input__file" />
       <Button className="imageupload__button" onClick={handleUpload}>
         发布动态
       </Button>

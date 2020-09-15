@@ -70,6 +70,7 @@ function Post({ postId, username, caption, imageUrl, user }) {
             disabled={!comment}
             type="submit"
             onClick={postComment}
+            style={comment ? { color: "#1A91DA" } : { color: "#CDEAFD" }}
           >
             发布
           </button>
